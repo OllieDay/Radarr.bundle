@@ -88,11 +88,11 @@ class RadarrAgent(Agent.Movies):
 			return None
 
 	def create_authorized_full_url(self, uri):
-		full_url = self.create_full_url(uri)
-		if not full_url:
-			return None
 		if not Prefs['radarr_api_key']:
 			Log('Enter your Radarr API key in the agent\'s preferences')
+			return None
+		full_url = self.create_full_url(uri)
+		if not full_url:
 			return None
 		return '{}?apikey={}'.format(full_url, Prefs['radarr_api_key'])
 
